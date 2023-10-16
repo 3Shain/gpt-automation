@@ -124,6 +124,11 @@ async function startRoutine() {
   }[] = [];
   let lastContext :any = null;
   for (const q of questions()) {
+    if(lastContext!=q.current.contextId) {
+      console.log("context id differ");
+      newTab.click();
+      await wait(1000);
+    }
     await postMessage(q.current.body);
     const response = await waitUntilResponse();
     // console.log(response);
@@ -132,11 +137,7 @@ async function startRoutine() {
       answerHTML: response.outerHTML,
     });
     await wait(5000);
-    if(lastContext!=q.current.contextId) {
-      newTab.click();
-    }
     lastContext = q.current.contextId;
-    await wait(1000);
   }
   console.log("Done!");
   const blob = new Blob([generateReport(data)], {
