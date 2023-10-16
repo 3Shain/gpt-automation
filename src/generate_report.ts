@@ -126,7 +126,7 @@ export function generateReport(
             console.log(marks);
             const csvContent = [
               "question_id,marker,mark",
-              marks.map(([id, mark]) => {
+              ...marks.map(([id, mark]) => {
                 return \`\${id},\${marker},\${mark}\`;
               }),
             ].join("\\n");
