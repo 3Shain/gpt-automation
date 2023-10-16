@@ -11696,6 +11696,7 @@
   }
   async function startRoutine() {
     const data = [];
+    let lastContext = null;
     for (const q of questions()) {
       await postMessage(q.current.body);
       const response = await waitUntilResponse();
@@ -11704,7 +11705,10 @@
         answerHTML: response.outerHTML
       });
       await wait(5e3);
-      newTab.click();
+      if (lastContext != q.current.contextId) {
+        lastContext = q.current.contextId;
+        newTab.click();
+      }
       await wait(1e3);
     }
     console.log("Done!");

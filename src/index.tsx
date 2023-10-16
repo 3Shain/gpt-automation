@@ -122,6 +122,7 @@ async function startRoutine() {
     body: string;
     answerHTML: string;
   }[] = [];
+  let lastContext :any = null;
   for (const q of questions()) {
     await postMessage(q.current.body);
     const response = await waitUntilResponse();
@@ -131,7 +132,10 @@ async function startRoutine() {
       answerHTML: response.outerHTML,
     });
     await wait(5000);
-    newTab.click();
+    if(lastContext!=q.current.contextId) {
+      lastContext = q.current.contextId;
+      newTab.click();
+    }
     await wait(1000);
   }
   console.log("Done!");
