@@ -3,7 +3,7 @@
   try {
     if (typeof document != "undefined") {
       var elementStyle = document.createElement("style");
-      elementStyle.appendChild(document.createTextNode("*,::before,::after{--un-rotate:0;--un-rotate-x:0;--un-rotate-y:0;--un-rotate-z:0;--un-scale-x:1;--un-scale-y:1;--un-scale-z:1;--un-skew-x:0;--un-skew-y:0;--un-translate-x:0;--un-translate-y:0;--un-translate-z:0;--un-pan-x: ;--un-pan-y: ;--un-pinch-zoom: ;--un-scroll-snap-strictness:proximity;--un-ordinal: ;--un-slashed-zero: ;--un-numeric-figure: ;--un-numeric-spacing: ;--un-numeric-fraction: ;--un-border-spacing-x:0;--un-border-spacing-y:0;--un-ring-offset-shadow:0 0 rgba(0,0,0,0);--un-ring-shadow:0 0 rgba(0,0,0,0);--un-shadow-inset: ;--un-shadow:0 0 rgba(0,0,0,0);--un-ring-inset: ;--un-ring-offset-width:0px;--un-ring-offset-color:#fff;--un-ring-width:0px;--un-ring-color:rgba(147,197,253,0.5);--un-blur: ;--un-brightness: ;--un-contrast: ;--un-drop-shadow: ;--un-grayscale: ;--un-hue-rotate: ;--un-invert: ;--un-saturate: ;--un-sepia: ;--un-backdrop-blur: ;--un-backdrop-brightness: ;--un-backdrop-contrast: ;--un-backdrop-grayscale: ;--un-backdrop-hue-rotate: ;--un-backdrop-invert: ;--un-backdrop-opacity: ;--un-backdrop-saturate: ;--un-backdrop-sepia: ;}::backdrop{--un-rotate:0;--un-rotate-x:0;--un-rotate-y:0;--un-rotate-z:0;--un-scale-x:1;--un-scale-y:1;--un-scale-z:1;--un-skew-x:0;--un-skew-y:0;--un-translate-x:0;--un-translate-y:0;--un-translate-z:0;--un-pan-x: ;--un-pan-y: ;--un-pinch-zoom: ;--un-scroll-snap-strictness:proximity;--un-ordinal: ;--un-slashed-zero: ;--un-numeric-figure: ;--un-numeric-spacing: ;--un-numeric-fraction: ;--un-border-spacing-x:0;--un-border-spacing-y:0;--un-ring-offset-shadow:0 0 rgba(0,0,0,0);--un-ring-shadow:0 0 rgba(0,0,0,0);--un-shadow-inset: ;--un-shadow:0 0 rgba(0,0,0,0);--un-ring-inset: ;--un-ring-offset-width:0px;--un-ring-offset-color:#fff;--un-ring-width:0px;--un-ring-color:rgba(147,197,253,0.5);--un-blur: ;--un-brightness: ;--un-contrast: ;--un-drop-shadow: ;--un-grayscale: ;--un-hue-rotate: ;--un-invert: ;--un-saturate: ;--un-sepia: ;--un-backdrop-blur: ;--un-backdrop-brightness: ;--un-backdrop-contrast: ;--un-backdrop-grayscale: ;--un-backdrop-hue-rotate: ;--un-backdrop-invert: ;--un-backdrop-opacity: ;--un-backdrop-saturate: ;--un-backdrop-sepia: ;}.ufixed{position:fixed;}.uleft-0{left:0;}.utop-0{top:0;}.uz-9999{z-index:9999;}.uh-20px{height:20px;}.utext-gray{--un-text-opacity:1;color:rgba(156,163,175,var(--un-text-opacity));}"));
+      elementStyle.appendChild(document.createTextNode("*,::before,::after{--un-rotate:0;--un-rotate-x:0;--un-rotate-y:0;--un-rotate-z:0;--un-scale-x:1;--un-scale-y:1;--un-scale-z:1;--un-skew-x:0;--un-skew-y:0;--un-translate-x:0;--un-translate-y:0;--un-translate-z:0;--un-pan-x: ;--un-pan-y: ;--un-pinch-zoom: ;--un-scroll-snap-strictness:proximity;--un-ordinal: ;--un-slashed-zero: ;--un-numeric-figure: ;--un-numeric-spacing: ;--un-numeric-fraction: ;--un-border-spacing-x:0;--un-border-spacing-y:0;--un-ring-offset-shadow:0 0 rgba(0,0,0,0);--un-ring-shadow:0 0 rgba(0,0,0,0);--un-shadow-inset: ;--un-shadow:0 0 rgba(0,0,0,0);--un-ring-inset: ;--un-ring-offset-width:0px;--un-ring-offset-color:#fff;--un-ring-width:0px;--un-ring-color:rgba(147,197,253,0.5);--un-blur: ;--un-brightness: ;--un-contrast: ;--un-drop-shadow: ;--un-grayscale: ;--un-hue-rotate: ;--un-invert: ;--un-saturate: ;--un-sepia: ;--un-backdrop-blur: ;--un-backdrop-brightness: ;--un-backdrop-contrast: ;--un-backdrop-grayscale: ;--un-backdrop-hue-rotate: ;--un-backdrop-invert: ;--un-backdrop-opacity: ;--un-backdrop-saturate: ;--un-backdrop-sepia: ;}::backdrop{--un-rotate:0;--un-rotate-x:0;--un-rotate-y:0;--un-rotate-z:0;--un-scale-x:1;--un-scale-y:1;--un-scale-z:1;--un-skew-x:0;--un-skew-y:0;--un-translate-x:0;--un-translate-y:0;--un-translate-z:0;--un-pan-x: ;--un-pan-y: ;--un-pinch-zoom: ;--un-scroll-snap-strictness:proximity;--un-ordinal: ;--un-slashed-zero: ;--un-numeric-figure: ;--un-numeric-spacing: ;--un-numeric-fraction: ;--un-border-spacing-x:0;--un-border-spacing-y:0;--un-ring-offset-shadow:0 0 rgba(0,0,0,0);--un-ring-shadow:0 0 rgba(0,0,0,0);--un-shadow-inset: ;--un-shadow:0 0 rgba(0,0,0,0);--un-ring-inset: ;--un-ring-offset-width:0px;--un-ring-offset-color:#fff;--un-ring-width:0px;--un-ring-color:rgba(147,197,253,0.5);--un-blur: ;--un-brightness: ;--un-contrast: ;--un-drop-shadow: ;--un-grayscale: ;--un-hue-rotate: ;--un-invert: ;--un-saturate: ;--un-sepia: ;--un-backdrop-blur: ;--un-backdrop-brightness: ;--un-backdrop-contrast: ;--un-backdrop-grayscale: ;--un-backdrop-hue-rotate: ;--un-backdrop-invert: ;--un-backdrop-opacity: ;--un-backdrop-saturate: ;--un-backdrop-sepia: ;}.umy-10px{margin-top:10px;margin-bottom:10px;}.umt-10px{margin-top:10px;}.uborder-1px{border-width:1px;}.uborder-dashed{border-style:dashed;}.up-10px{padding:10px;}"));
       document.head.appendChild(elementStyle);
     }
   } catch (e) {
@@ -469,6 +469,101 @@
       return res;
     };
   }
+  const FALLBACK = Symbol("fallback");
+  function dispose(d2) {
+    for (let i2 = 0; i2 < d2.length; i2++)
+      d2[i2]();
+  }
+  function mapArray(list, mapFn, options = {}) {
+    let items = [], mapped = [], disposers = [], len = 0, indexes = mapFn.length > 1 ? [] : null;
+    onCleanup(() => dispose(disposers));
+    return () => {
+      let newItems = list() || [], i2, j2;
+      newItems[$TRACK];
+      return untrack(() => {
+        let newLen = newItems.length, newIndices, newIndicesNext, temp, tempdisposers, tempIndexes, start, end, newEnd, item;
+        if (newLen === 0) {
+          if (len !== 0) {
+            dispose(disposers);
+            disposers = [];
+            items = [];
+            mapped = [];
+            len = 0;
+            indexes && (indexes = []);
+          }
+          if (options.fallback) {
+            items = [FALLBACK];
+            mapped[0] = createRoot((disposer) => {
+              disposers[0] = disposer;
+              return options.fallback();
+            });
+            len = 1;
+          }
+        } else if (len === 0) {
+          mapped = new Array(newLen);
+          for (j2 = 0; j2 < newLen; j2++) {
+            items[j2] = newItems[j2];
+            mapped[j2] = createRoot(mapper);
+          }
+          len = newLen;
+        } else {
+          temp = new Array(newLen);
+          tempdisposers = new Array(newLen);
+          indexes && (tempIndexes = new Array(newLen));
+          for (start = 0, end = Math.min(len, newLen); start < end && items[start] === newItems[start]; start++)
+            ;
+          for (end = len - 1, newEnd = newLen - 1; end >= start && newEnd >= start && items[end] === newItems[newEnd]; end--, newEnd--) {
+            temp[newEnd] = mapped[end];
+            tempdisposers[newEnd] = disposers[end];
+            indexes && (tempIndexes[newEnd] = indexes[end]);
+          }
+          newIndices = /* @__PURE__ */ new Map();
+          newIndicesNext = new Array(newEnd + 1);
+          for (j2 = newEnd; j2 >= start; j2--) {
+            item = newItems[j2];
+            i2 = newIndices.get(item);
+            newIndicesNext[j2] = i2 === void 0 ? -1 : i2;
+            newIndices.set(item, j2);
+          }
+          for (i2 = start; i2 <= end; i2++) {
+            item = items[i2];
+            j2 = newIndices.get(item);
+            if (j2 !== void 0 && j2 !== -1) {
+              temp[j2] = mapped[i2];
+              tempdisposers[j2] = disposers[i2];
+              indexes && (tempIndexes[j2] = indexes[i2]);
+              j2 = newIndicesNext[j2];
+              newIndices.set(item, j2);
+            } else
+              disposers[i2]();
+          }
+          for (j2 = start; j2 < newLen; j2++) {
+            if (j2 in temp) {
+              mapped[j2] = temp[j2];
+              disposers[j2] = tempdisposers[j2];
+              if (indexes) {
+                indexes[j2] = tempIndexes[j2];
+                indexes[j2](j2);
+              }
+            } else
+              mapped[j2] = createRoot(mapper);
+          }
+          mapped = mapped.slice(0, len = newLen);
+          items = newItems.slice(0);
+        }
+        return mapped;
+      });
+      function mapper(disposer) {
+        disposers[j2] = disposer;
+        if (indexes) {
+          const [s2, set] = createSignal(j2);
+          indexes[j2] = set;
+          return mapFn(newItems[j2], s2);
+        }
+        return mapFn(newItems[j2]);
+      }
+    };
+  }
   function createComponent(Comp, props) {
     return untrack(() => Comp(props || {}));
   }
@@ -651,6 +746,12 @@
     return ctx ? `${ctx.id}${ctx.count++}` : `cl-${counter++}`;
   }
   const narrowedError = (name) => `Stale read from <${name}>.`;
+  function For(props) {
+    const fallback = "fallback" in props && {
+      fallback: () => props.fallback
+    };
+    return createMemo(mapArray(() => props.each, props.children, fallback || void 0));
+  }
   function Show(props) {
     const keyed = props.keyed;
     const condition = createMemo(() => props.when, void 0, {
@@ -918,8 +1019,8 @@
   const $$EVENTS = "_$DX_DELEGATE";
   function render(code, element, init, options = {}) {
     let disposer;
-    createRoot((dispose) => {
-      disposer = dispose;
+    createRoot((dispose2) => {
+      disposer = dispose2;
       element === document ? code() : insert(element, code(), element.firstChild ? null : void 0, init);
     }, options.owner);
     return () => {
@@ -1285,7 +1386,7 @@
         if (el instanceof HTMLHeadElement) {
           const [clean, setClean] = createSignal(false);
           const cleanup = () => setClean(true);
-          createRoot((dispose) => insert(el, () => !clean() ? content() : dispose(), null));
+          createRoot((dispose2) => insert(el, () => !clean() ? content() : dispose2(), null));
           onCleanup(cleanup);
         } else {
           const container = createElement(props.isSVG ? "g" : "div", props.isSVG), renderRoot = useShadow && container.attachShadow ? container.attachShadow({
@@ -5977,7 +6078,7 @@
       }
     ];
   }
-  css(baseInputResetStyles, {
+  const inputStyles = css(baseInputResetStyles, {
     variants: {
       withLeftElement: {
         true: {}
@@ -8820,11 +8921,11 @@
       backgroundColor: "currentColor"
     }
   });
-  css({
+  const formControlStyles = css({
     position: "relative",
     width: "$full"
   });
-  css({
+  const formLabelStyles = css({
     display: "inline-block",
     marginBottom: "$1",
     color: "$neutral12",
@@ -8838,12 +8939,12 @@
       cursor: "not-allowed"
     }
   });
-  css({
+  const requiredIndicatorStyles = css({
     marginInlineStart: "$1",
     color: "$danger9",
     fontSize: "$base"
   });
-  css({
+  const formHelperTextStyles = css({
     display: "inline-block",
     marginTop: "$1",
     color: "$neutral11",
@@ -8872,6 +8973,84 @@
     }
   });
   const FormControlContext = createContext();
+  const hopeFormControlClass = "hope-form-control";
+  function FormControl(props) {
+    const defaultId = `hope-field-${createUniqueId()}`;
+    const theme = useStyleConfig().FormControl;
+    const [state, setState] = createStore({
+      get id() {
+        var _a;
+        return (_a = props.id) != null ? _a : defaultId;
+      },
+      get labelId() {
+        return `${this.id}-label`;
+      },
+      get helperTextId() {
+        return `${this.id}-helper-text`;
+      },
+      get errorMessageId() {
+        return `${this.id}-error-message`;
+      },
+      get required() {
+        return props.required;
+      },
+      get disabled() {
+        return props.disabled;
+      },
+      get invalid() {
+        return props.invalid;
+      },
+      get readOnly() {
+        return props.readOnly;
+      },
+      get ["data-focus"]() {
+        return this.isFocused ? "" : void 0;
+      },
+      get ["data-disabled"]() {
+        return this.disabled ? "" : void 0;
+      },
+      get ["data-invalid"]() {
+        return this.invalid ? "" : void 0;
+      },
+      get ["data-readonly"]() {
+        return this.readOnly ? "" : void 0;
+      },
+      hasHelperText: false,
+      hasErrorMessage: false,
+      isFocused: false
+    });
+    const [local, others] = splitProps(props, ["id", "required", "disabled", "invalid", "readOnly", "class"]);
+    const setHasHelperText = (value) => setState("hasHelperText", value);
+    const setHasErrorMessage = (value) => setState("hasErrorMessage", value);
+    const onFocus = () => setState("isFocused", true);
+    const onBlur = () => setState("isFocused", false);
+    const context = () => ({
+      state,
+      setHasHelperText,
+      setHasErrorMessage,
+      onFocus,
+      onBlur
+    });
+    const classes = () => classNames(local.class, hopeFormControlClass, formControlStyles());
+    return createComponent(FormControlContext.Provider, {
+      get value() {
+        return context();
+      },
+      get children() {
+        return createComponent(Box, mergeProps({
+          role: "group",
+          get ["class"]() {
+            return classes();
+          },
+          get __baseStyle() {
+            var _a;
+            return (_a = theme == null ? void 0 : theme.baseStyle) == null ? void 0 : _a.root;
+          }
+        }, others));
+      }
+    });
+  }
+  FormControl.toString = () => createClassSelector(hopeFormControlClass);
   function useFormControlContext() {
     return useContext(FormControlContext);
   }
@@ -9134,7 +9313,7 @@
       }
     }
   });
-  css({
+  const dividerStyles = css({
     border: 0,
     borderColor: "currentColor",
     variants: {
@@ -9159,6 +9338,34 @@
       }
     }
   });
+  const hopeDividerClass = "hope-divider";
+  function Divider(props) {
+    const defaultProps = {
+      as: "div",
+      variant: "solid",
+      orientation: "horizontal",
+      color: "$neutral6",
+      thickness: "1px"
+    };
+    const propsWithDefault = mergeProps(defaultProps, props);
+    const [local, others] = splitProps(propsWithDefault, ["class", "variant", "orientation", "thickness"]);
+    const classes = () => {
+      return classNames(local.class, hopeDividerClass, dividerStyles({
+        variant: local.variant,
+        orientation: local.orientation,
+        css: {
+          borderLeftWidth: local.orientation === "vertical" ? local.thickness : 0,
+          borderBottomWidth: local.orientation === "horizontal" ? local.thickness : 0
+        }
+      }));
+    };
+    return createComponent(Box, mergeProps({
+      get ["class"]() {
+        return classes();
+      }
+    }, others));
+  }
+  Divider.toString = () => createClassSelector(hopeDividerClass);
   function Modal(props) {
     const defaultDialogId = `hope-modal-${createUniqueId()}`;
     const theme = useStyleConfig().Modal;
@@ -9558,6 +9765,100 @@
     });
   }
   ModalOverlay.toString = () => createClassSelector(hopeModalOverlayClass);
+  const hopeFormHelperTextClass = "hope-form-helper-text";
+  function FormHelperText(props) {
+    const theme = useStyleConfig().FormControl;
+    const formControl = useFormControlContext();
+    const [local, others] = splitProps(props, ["ref", "id", "class"]);
+    const id = () => {
+      var _a;
+      return (_a = local.id) != null ? _a : formControl == null ? void 0 : formControl.state.helperTextId;
+    };
+    const classes = () => classNames(local.class, hopeFormHelperTextClass, formHelperTextStyles());
+    onMount(() => formControl == null ? void 0 : formControl.setHasHelperText(true));
+    onCleanup(() => formControl == null ? void 0 : formControl.setHasHelperText(false));
+    return createComponent(Box, mergeProps({
+      get id() {
+        return id();
+      },
+      get ["class"]() {
+        return classes();
+      },
+      get __baseStyle() {
+        var _a;
+        return (_a = theme == null ? void 0 : theme.baseStyle) == null ? void 0 : _a.helperText;
+      },
+      get ["data-disabled"]() {
+        return formControl == null ? void 0 : formControl.state["data-disabled"];
+      },
+      get ["data-readonly"]() {
+        return formControl == null ? void 0 : formControl.state["data-readonly"];
+      }
+    }, others));
+  }
+  FormHelperText.toString = () => createClassSelector(hopeFormHelperTextClass);
+  const _tmpl$$7 = /* @__PURE__ */ template(`<span role="presentation" aria-hidden="true">*</span>`, 2);
+  const hopeFormLabelClass = "hope-form-label";
+  function FormLabel(props) {
+    var _a, _b, _c;
+    const theme = useStyleConfig().FormControl;
+    const formControl = useFormControlContext();
+    const defaultProps = {
+      withRequiredIndicator: (_c = (_b = (_a = theme == null ? void 0 : theme.defaultProps) == null ? void 0 : _a.label) == null ? void 0 : _b.withRequiredIndicator) != null ? _c : true
+    };
+    const propsWithDefault = mergeProps(defaultProps, props);
+    const [local, others] = splitProps(propsWithDefault, ["id", "for", "class", "children", "withRequiredIndicator"]);
+    const id = () => {
+      var _a2;
+      return (_a2 = local.id) != null ? _a2 : formControl == null ? void 0 : formControl.state.labelId;
+    };
+    const htmlFor = () => {
+      var _a2;
+      return (_a2 = local.for) != null ? _a2 : formControl == null ? void 0 : formControl.state.id;
+    };
+    const classes = () => classNames(local.class, hopeFormLabelClass, formLabelStyles());
+    return createComponent(hope.label, mergeProps({
+      get id() {
+        return id();
+      },
+      get ["for"]() {
+        return htmlFor();
+      },
+      get ["class"]() {
+        return classes();
+      },
+      get __baseStyle() {
+        var _a2;
+        return (_a2 = theme == null ? void 0 : theme.baseStyle) == null ? void 0 : _a2.label;
+      },
+      get ["data-focus"]() {
+        return formControl == null ? void 0 : formControl.state["data-focus"];
+      },
+      get ["data-disabled"]() {
+        return formControl == null ? void 0 : formControl.state["data-disabled"];
+      },
+      get ["data-invalid"]() {
+        return formControl == null ? void 0 : formControl.state["data-invalid"];
+      },
+      get ["data-readonly"]() {
+        return formControl == null ? void 0 : formControl.state["data-readonly"];
+      }
+    }, others, {
+      get children() {
+        return [createMemo(() => local.children), createComponent(Show, {
+          get when() {
+            return (formControl == null ? void 0 : formControl.state.required) && local.withRequiredIndicator;
+          },
+          get children() {
+            const _el$ = _tmpl$$7.cloneNode(true);
+            createRenderEffect(() => _el$.className = requiredIndicatorStyles());
+            return _el$;
+          }
+        })];
+      }
+    }));
+  }
+  FormLabel.toString = () => createClassSelector(hopeFormLabelClass);
   const textStyles = css({
     variants: {
       size: {
@@ -9619,6 +9920,42 @@
   css(textStyles, {
     fontWeight: "$semibold"
   });
+  const InputGroupContext = createContext();
+  function useInputGroupContext() {
+    return useContext(InputGroupContext);
+  }
+  const hopeInputClass = "hope-input";
+  function Input(props) {
+    const theme = useStyleConfig().Input;
+    const inputGroup = useInputGroupContext();
+    const formControlProps = useFormControl(props);
+    const [local, others] = splitProps(props, ["class", "htmlSize", "variant", "size"]);
+    const classes = () => {
+      var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n;
+      return classNames(local.class, hopeInputClass, inputStyles({
+        variant: (_e = (_d = (_a = local.variant) != null ? _a : inputGroup == null ? void 0 : inputGroup.state.variant) != null ? _d : (_c = (_b = theme == null ? void 0 : theme.defaultProps) == null ? void 0 : _b.input) == null ? void 0 : _c.variant) != null ? _e : "outline",
+        size: (_j = (_i = (_f = local.size) != null ? _f : inputGroup == null ? void 0 : inputGroup.state.size) != null ? _i : (_h = (_g = theme == null ? void 0 : theme.defaultProps) == null ? void 0 : _g.input) == null ? void 0 : _h.size) != null ? _j : "md",
+        withLeftElement: (_k = inputGroup == null ? void 0 : inputGroup.state.hasLeftElement) != null ? _k : false,
+        withRightElement: (_l = inputGroup == null ? void 0 : inputGroup.state.hasRightElement) != null ? _l : false,
+        withLeftAddon: (_m = inputGroup == null ? void 0 : inputGroup.state.hasLeftAddon) != null ? _m : false,
+        withRightAddon: (_n = inputGroup == null ? void 0 : inputGroup.state.hasRightAddon) != null ? _n : false
+      }));
+    };
+    return createComponent(hope.input, mergeProps({
+      type: "text",
+      get ["class"]() {
+        return classes();
+      },
+      get size() {
+        return local.htmlSize;
+      },
+      get __baseStyle() {
+        var _a;
+        return (_a = theme == null ? void 0 : theme.baseStyle) == null ? void 0 : _a.input;
+      }
+    }, formControlProps, others));
+  }
+  Input.toString = () => createClassSelector(hopeInputClass);
   css({
     borderRadius: "$md",
     borderColor: "$neutral7",
@@ -11074,9 +11411,238 @@
       disclosureProps
     };
   }
+  var FileSaver_min = { exports: {} };
+  (function(module, exports) {
+    (function(a2, b2) {
+      b2();
+    })(commonjsGlobal, function() {
+      function b2(a3, b3) {
+        return "undefined" == typeof b3 ? b3 = { autoBom: false } : "object" != typeof b3 && (console.warn("Deprecated: Expected third argument to be a object"), b3 = { autoBom: !b3 }), b3.autoBom && /^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a3.type) ? new Blob(["\uFEFF", a3], { type: a3.type }) : a3;
+      }
+      function c2(a3, b3, c3) {
+        var d3 = new XMLHttpRequest();
+        d3.open("GET", a3), d3.responseType = "blob", d3.onload = function() {
+          g2(d3.response, b3, c3);
+        }, d3.onerror = function() {
+          console.error("could not download file");
+        }, d3.send();
+      }
+      function d2(a3) {
+        var b3 = new XMLHttpRequest();
+        b3.open("HEAD", a3, false);
+        try {
+          b3.send();
+        } catch (a4) {
+        }
+        return 200 <= b3.status && 299 >= b3.status;
+      }
+      function e(a3) {
+        try {
+          a3.dispatchEvent(new MouseEvent("click"));
+        } catch (c3) {
+          var b3 = document.createEvent("MouseEvents");
+          b3.initMouseEvent("click", true, true, window, 0, 0, 0, 80, 20, false, false, false, false, 0, null), a3.dispatchEvent(b3);
+        }
+      }
+      var f2 = "object" == typeof window && window.window === window ? window : "object" == typeof self && self.self === self ? self : "object" == typeof commonjsGlobal && commonjsGlobal.global === commonjsGlobal ? commonjsGlobal : void 0, a2 = f2.navigator && /Macintosh/.test(navigator.userAgent) && /AppleWebKit/.test(navigator.userAgent) && !/Safari/.test(navigator.userAgent), g2 = f2.saveAs || ("object" != typeof window || window !== f2 ? function() {
+      } : "download" in HTMLAnchorElement.prototype && !a2 ? function(b3, g3, h2) {
+        var i2 = f2.URL || f2.webkitURL, j2 = document.createElement("a");
+        g3 = g3 || b3.name || "download", j2.download = g3, j2.rel = "noopener", "string" == typeof b3 ? (j2.href = b3, j2.origin === location.origin ? e(j2) : d2(j2.href) ? c2(b3, g3, h2) : e(j2, j2.target = "_blank")) : (j2.href = i2.createObjectURL(b3), setTimeout(function() {
+          i2.revokeObjectURL(j2.href);
+        }, 4e4), setTimeout(function() {
+          e(j2);
+        }, 0));
+      } : "msSaveOrOpenBlob" in navigator ? function(f3, g3, h2) {
+        if (g3 = g3 || f3.name || "download", "string" != typeof f3)
+          navigator.msSaveOrOpenBlob(b2(f3, h2), g3);
+        else if (d2(f3))
+          c2(f3, g3, h2);
+        else {
+          var i2 = document.createElement("a");
+          i2.href = f3, i2.target = "_blank", setTimeout(function() {
+            e(i2);
+          });
+        }
+      } : function(b3, d3, e2, g3) {
+        if (g3 = g3 || open("", "_blank"), g3 && (g3.document.title = g3.document.body.innerText = "downloading..."), "string" == typeof b3)
+          return c2(b3, d3, e2);
+        var h2 = "application/octet-stream" === b3.type, i2 = /constructor/i.test(f2.HTMLElement) || f2.safari, j2 = /CriOS\/[\d]+/.test(navigator.userAgent);
+        if ((j2 || h2 && i2 || a2) && "undefined" != typeof FileReader) {
+          var k2 = new FileReader();
+          k2.onloadend = function() {
+            var a3 = k2.result;
+            a3 = j2 ? a3 : a3.replace(/^data:[^;]*;/, "data:attachment/file;"), g3 ? g3.location.href = a3 : location = a3, g3 = null;
+          }, k2.readAsDataURL(b3);
+        } else {
+          var l2 = f2.URL || f2.webkitURL, m2 = l2.createObjectURL(b3);
+          g3 ? g3.location = m2 : location.href = m2, g3 = null, setTimeout(function() {
+            l2.revokeObjectURL(m2);
+          }, 4e4);
+        }
+      });
+      f2.saveAs = g2.saveAs = g2, module.exports = g2;
+    });
+  })(FileSaver_min);
+  var FileSaver_minExports = FileSaver_min.exports;
   const __uno = "";
-  const _tmpl$ = /* @__PURE__ */ template(`<a class="flex px-3 min-h-[44px] py-1 items-center gap-3 transition-colors duration-200 dark:text-white cursor-pointer text-sm rounded-md border dark:border-white/20 gizmo:min-h-0 hover:bg-gray-500/10 h-11 gizmo:h-10 gizmo:rounded-lg gizmo:border-[rgba(0,0,0,0.1)] bg-white dark:bg-transparent flex-grow overflow-hidden"><span class=truncate>Open Script Panel`), _tmpl$2 = /* @__PURE__ */ template(`<div class="mb-1 flex flex-row gap-2">`);
+  function generateAQuestion(qid, body, answer) {
+    return `
+    <div class="question">
+          <h2>Question Id: ${qid}</h2>
+          <!--question content-->
+          <div>${body}</div>
+        </div>
+        <div class="gpt-answer">
+          <h2>GPT ANSWER</h2>
+          <!--gpt answer-->
+          ${answer}
+        </div>
+        <div class="your-mark">
+          <form data-qid="${qid}">
+            <fieldset>
+              <legend>What's your mark for this question:</legend>
+              <div>
+                <input type="radio" id="c0" name="contact" value="0" />
+                <label for="c0">0</label>
+    
+                <input type="radio" id="c1" name="contact" value="1" />
+                <label for="c1">1</label>
+    
+                <input type="radio" id="c2" name="contact" value="2" />
+                <label for="c2">2</label>
+    
+                <input type="radio" id="c3" name="contact" value="3" />
+                <label for="c3">3</label>
+    
+                <input type="radio" id="c4" name="contact" value="4" />
+                <label for="c4">4</label>
+    
+                <input type="radio" id="c5" name="contact" value="5" checked />
+                <label for="c5">5</label>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+    
+        <div class="divider"></div>
+`;
+  }
+  function generateReport(data) {
+    return `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <meta name="theme-color" content="#000000" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+          integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+          crossorigin="anonymous"
+        />
+    
+        <!-- The loading of KaTeX is deferred to speed up page rendering -->
+        <script
+          defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+          integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+          crossorigin="anonymous"
+        ><\/script>
+        <script
+          defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"
+          crossorigin="anonymous"
+        ><\/script>
+    
+        <!-- To automatically render math in text elements, include the auto-render extension: -->
+        <script
+          defer
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+          integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+          crossorigin="anonymous"
+          onload="renderMathInElement(document.body);"
+        ><\/script>
+        <title></title>
+        <style>
+          .question {
+            padding: 1em;
+          }
+          .divider {
+            margin: 10px 0;
+            border: solid 1px #888;
+          }
+          .gpt-answer {
+            padding: 1em;
+            border: dashed 1px #ccc;
+          }
+          .your-mark {
+            padding: 1em;
+            border: dashed 1px #ccc;
+          }
+        </style>
+      </head>
+    
+      <body>
+        
+    ${data.map((x2) => generateAQuestion(x2.id, x2.body, x2.answerHTML)).join("\n")}
+        <!--repeat until-->
+    
+        <label for="marker">Marker</label>
+        <input id="marker" type="" text />
+        <button onclick="collectMark()">Collect your mark</button>
+        <script type="text/javascript">
+          console.log("Hello!");
+    
+          function collectMark() {
+            const marker = document.querySelector("input#marker").value;
+            const allForms = document.querySelectorAll("form[data-qid]");
+            const marks = [...allForms].map((x) => {
+              const mark = [...x.querySelectorAll("input")].find(
+                (x) => x.checked
+              ).value;
+              return [x.dataset.qid, mark];
+            });
+            console.log(marks);
+            const csvContent = [
+              "question_id,marker,mark",
+              marks.map(([id, mark]) => {
+                return \`\${id},\${marker},\${mark}\`;
+              }),
+            ].join("\\n");
+            const blob = new Blob([csvContent], {
+              type: "text/plain;charset=utf-8",
+            });
+            saveAs(blob, \`\${marker}_\${new Date().toLocaleString()}.csv\`);
+          }
+        <\/script>
+      </body>
+    </html>
+    
+`;
+  }
+  const _tmpl$ = /* @__PURE__ */ template(`<a class="flex px-3 min-h-[44px] py-1 items-center gap-3 transition-colors duration-200 dark:text-white cursor-pointer text-sm rounded-md border dark:border-white/20 gizmo:min-h-0 hover:bg-gray-500/10 h-11 gizmo:h-10 gizmo:rounded-lg gizmo:border-[rgba(0,0,0,0.1)] bg-white dark:bg-transparent flex-grow overflow-hidden"><span class=truncate>Open Script Panel`), _tmpl$2 = /* @__PURE__ */ template(`<div class="up-10px uborder-dashed uborder-1px">`), _tmpl$3 = /* @__PURE__ */ template(`<div class=umt-10px>`), _tmpl$4 = /* @__PURE__ */ template(`<div class="mb-1 flex flex-row gap-2">`);
   let textarea;
+  function openAFile() {
+    return new Promise((res) => {
+      var input = document.createElement("input");
+      input.type = "file";
+      input.accept = ".json";
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (file == null) {
+          res(null);
+          return;
+        }
+        const reader = new FileReader();
+        reader.readAsText(file, "utf-8");
+        reader.onload = (ev) => {
+          res(ev.target.result);
+        };
+      };
+      input.click();
+    });
+  }
   function wait(ms) {
     return new Promise((res) => {
       setTimeout(() => res(), ms);
@@ -11091,7 +11657,7 @@
           if (((_a = document.querySelector(".final-completion")) == null ? void 0 : _a.querySelector(".result-streaming")) === null) {
             const final = (_b = document.querySelector(".final-completion")) == null ? void 0 : _b.querySelector(".markdown.prose");
             if (final) {
-              res(final.textContent);
+              res(final);
             } else {
               rej(new Error("Detect response failed"));
             }
@@ -11108,6 +11674,8 @@
     });
   }
   async function postMessage(content) {
+    textarea = document.querySelector('#prompt-textarea[tabindex="0"]');
+    textarea.nextElementSibling;
     textarea.value = content;
     const inputEvent = new InputEvent("input", {
       bubbles: true,
@@ -11126,24 +11694,103 @@
     });
     textarea.dispatchEvent(keydownEvent);
   }
-  async function startRoutine(questions) {
-    for (const q of questions) {
-      await postMessage(q);
+  async function startRoutine() {
+    const data = [];
+    for (const q of questions()) {
+      await postMessage(q.current.body);
       const response = await waitUntilResponse();
-      console.log(response);
+      data.push({
+        ...q.current,
+        answerHTML: response.outerHTML
+      });
+      await wait(5e3);
+      newTab.click();
+      await wait(1e3);
     }
     console.log("Done!");
+    const blob = new Blob([generateReport(data)], {
+      type: "text/plain;charset=utf-8"
+    });
+    FileSaver_minExports.saveAs(blob, `report_${(/* @__PURE__ */ new Date()).toLocaleString()}.html`);
   }
+  let internalIdSel = 0;
+  function createQuestionState(initial) {
+    const internalId = internalIdSel++;
+    const [id, setId] = createSignal(initial.id);
+    const [contextId, setContextId] = createSignal(initial.contextId);
+    const [body, setBody] = createSignal(initial.body);
+    return {
+      UI: () => [createComponent(FormControl, {
+        required: true,
+        get children() {
+          return [createComponent(FormLabel, {
+            "for": "qid",
+            children: "Question Id"
+          }), createComponent(Input, {
+            id: "qid",
+            get value() {
+              return id();
+            },
+            onInput: (e) => setId(e.target.value)
+          }), createComponent(FormHelperText, {})];
+        }
+      }), createComponent(FormControl, {
+        required: true,
+        get children() {
+          return [createComponent(FormLabel, {
+            "for": "qcid",
+            children: "Question Context Id"
+          }), createComponent(Input, {
+            id: "cid",
+            get value() {
+              return contextId();
+            },
+            onInput: (e) => setContextId(e.target.value)
+          }), createComponent(FormHelperText, {
+            children: "Question with the same context id will be feed into the same chat session."
+          })];
+        }
+      }), createComponent(FormControl, {
+        required: true,
+        get children() {
+          return [createComponent(FormLabel, {
+            "for": "body",
+            children: "Question Body"
+          }), createComponent(Textarea, {
+            id: "body",
+            get value() {
+              return body();
+            },
+            onInput: (e) => setBody(e.target.value)
+          }), createComponent(FormHelperText, {})];
+        }
+      })],
+      get current() {
+        return {
+          internalId,
+          id: id(),
+          contextId: contextId(),
+          body: body()
+        };
+      }
+    };
+  }
+  const [questions, setQuestions] = createSignal([]);
   function App() {
-    textarea = document.querySelector('#prompt-textarea[tabindex="0"]');
-    textarea.nextElementSibling;
     const {
       isOpen,
       onOpen,
       onClose
     } = createDisclosure();
-    const [value, setValue] = createSignal("");
-    const handleInput = (event) => setValue(event.target.value);
+    const addQuestionAtIndex = (idx) => {
+      setQuestions((current) => {
+        return [...current.slice(0, idx), createQuestionState({
+          id: "",
+          contextId: "",
+          body: ""
+        }), ...current.slice(idx)];
+      });
+    };
     return createComponent(HopeProvider, {
       get children() {
         return [(() => {
@@ -11167,16 +11814,72 @@
                   children: "Yeah it's a script."
                 }), createComponent(ModalBody, {
                   get children() {
-                    return [createComponent(Textarea, {
-                      get value() {
-                        return value();
-                      },
-                      onInput: handleInput,
-                      placeholder: "Paste questions here. Each line with one question."
-                    }), createComponent(Button, {
+                    return [(() => {
+                      const _el$2 = _tmpl$2();
+                      insert(_el$2, createComponent(Button, {
+                        onClick: () => addQuestionAtIndex(0),
+                        children: "Add question"
+                      }), null);
+                      insert(_el$2, createComponent(For, {
+                        get each() {
+                          return questions();
+                        },
+                        children: (item, idx) => {
+                          const UI = item.UI;
+                          return (() => {
+                            const _el$3 = _tmpl$3();
+                            insert(_el$3, createComponent(Divider, {
+                              "class": "umy-10px"
+                            }), null);
+                            insert(_el$3, createComponent(UI, {}), null);
+                            insert(_el$3, createComponent(Button, {
+                              colorScheme: "danger",
+                              onClick: () => setQuestions((current) => current.filter((x2) => x2.current.internalId !== item.current.internalId)),
+                              children: "Delete"
+                            }), null);
+                            insert(_el$3, createComponent(Divider, {
+                              "class": "umy-10px"
+                            }), null);
+                            insert(_el$3, createComponent(Button, {
+                              onClick: () => addQuestionAtIndex(idx() + 1),
+                              children: "Add question"
+                            }), null);
+                            return _el$3;
+                          })();
+                        }
+                      }), null);
+                      insert(_el$2, createComponent(Divider, {
+                        "class": "umy-10px"
+                      }), null);
+                      insert(_el$2, createComponent(Button, {
+                        onClick: async () => {
+                          const file = await openAFile();
+                          if (file != null) {
+                            const content = JSON.parse(file);
+                            if ("questions" in content) {
+                              setQuestions(content["questions"].map(createQuestionState));
+                            }
+                          }
+                        },
+                        children: "Load preset"
+                      }), null);
+                      insert(_el$2, createComponent(Button, {
+                        onClick: () => {
+                          const blob = new Blob([JSON.stringify({
+                            questions: questions().map((x2) => x2.current)
+                          })], {
+                            type: "text/plain;charset=utf-8"
+                          });
+                          FileSaver_minExports.saveAs(blob, "preset.json");
+                        },
+                        children: "Save preset"
+                      }), null);
+                      return _el$2;
+                    })(), createComponent(Button, {
                       onClick: () => {
+                        console.log(questions().map((x2) => x2.current));
                         onClose();
-                        startRoutine(value().split(/\r?\n/));
+                        startRoutine();
                       },
                       children: "Start!"
                     })];
@@ -11190,7 +11893,8 @@
     });
   }
   const nav = document.querySelector("nav");
-  const div = _tmpl$2();
+  const div = _tmpl$4();
+  const newTab = nav.firstChild.firstChild;
   nav.insertBefore(div, nav.firstChild);
   render(() => createComponent(App, {}), div);
   delegateEvents(["click"]);
