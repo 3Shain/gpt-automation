@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./",
+      "strict": true,
+      "target": "ESNext",
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "jsx": "preserve",
+      "jsxImportSource": "solid-js",
+      "types": ["vite/client"],
+      "noEmit": true,
+      "isolatedModules": true,
+      "skipLibCheck":true,
+      "paths": {
+      }
+    },
+    "include": ["src/**/*.ts","src/**/*.tsx"]
+  }
+  
