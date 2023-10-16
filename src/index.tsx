@@ -133,9 +133,9 @@ async function startRoutine() {
     });
     await wait(5000);
     if(lastContext!=q.current.contextId) {
-      lastContext = q.current.contextId;
       newTab.click();
     }
+    lastContext = q.current.contextId;
     await wait(1000);
   }
   console.log("Done!");

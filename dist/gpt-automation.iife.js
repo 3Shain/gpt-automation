@@ -11706,9 +11706,9 @@
       });
       await wait(5e3);
       if (lastContext != q.current.contextId) {
-        lastContext = q.current.contextId;
         newTab.click();
       }
+      lastContext = q.current.contextId;
       await wait(1e3);
     }
     console.log("Done!");
