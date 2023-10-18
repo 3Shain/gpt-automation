@@ -1,5 +1,11 @@
 import { render } from "solid-js/web";
-import { Divider, HopeProvider, createDisclosure } from "@hope-ui/solid";
+import {
+  Divider,
+  HStack,
+  HopeProvider,
+  VStack,
+  createDisclosure,
+} from "@hope-ui/solid";
 import { Button } from "@hope-ui/solid";
 import { Textarea } from "@hope-ui/solid";
 import {
@@ -20,9 +26,19 @@ import "virtual:uno.css";
 import { For, JSX, createSignal } from "solid-js";
 import { generateReport } from "./generate_report";
 
-interface GptResponse {
-  plainText: string;
-  rawHTML: string;
+function safeFileName(input: string) {
+  // Remove special characters commonly not allowed in filenames
+  let sanitized = input.replace(/[\/\\?%*:|"<>]/g, "_");
+
+  // If you're on Windows, you might also want to remove characters like : or \
+  // sanitized = input.replace(/[\/\\?%*:|"<>]/g, '_');
+
+  // Truncate the filename if it's too long, for example, over 255 characters (common maximum on many file systems)
+  if (sanitized.length > 255) {
+    sanitized = sanitized.substring(0, 255);
+  }
+
+  return sanitized;
 }
 
 let textarea: HTMLTextAreaElement;
@@ -119,17 +135,18 @@ async function postMessage(content: string) {
 async function startRoutine() {
   const data: {
     id: string;
+    contextId: string;
     body: string;
     answerHTML: string;
   }[] = [];
-  let lastContext :any = null;
+  let lastContext: any = null;
   for (const q of questions()) {
-    if(lastContext!=q.current.contextId) {
+    if (lastContext != q.current.contextId) {
       console.log("context id differ");
       newTab.click();
       await wait(1000);
     }
-    await postMessage(q.current.body);
+    await postMessage(prologue() + q.current.body + epilogue());
     const response = await waitUntilResponse();
     // console.log(response);
     data.push({
@@ -140,10 +157,13 @@ async function startRoutine() {
     lastContext = q.current.contextId;
   }
   console.log("Done!");
-  const blob = new Blob([generateReport(data)], {
-    type: "text/plain;charset=utf-8",
-  });
-  saveAs(blob, `report_${new Date().toLocaleString()}.html`);
+  const blob = new Blob(
+    [generateReport(data, presetId(), prologue(), epilogue())],
+    {
+      type: "text/plain;charset=utf-8",
+    }
+  );
+  saveAs(blob, `report_${presetId()}_${new Date().toLocaleString()}.html`);
 }
 
 interface QuestionState {
@@ -215,6 +235,9 @@ function createQuestionState(initial: {
   };
 }
 
+const [presetId, setPresetId] = createSignal<string>("Unnamed Preset");
+const [prologue, setPrologue] = createSignal<string>("");
+const [epilogue, setEpilogue] = createSignal<string>("");
 const [questions, setQuestions] = createSignal<QuestionState[]>([]);
 
 function App() {
@@ -252,85 +275,145 @@ function App() {
           <ModalCloseButton />
           <ModalHeader>Yeah it's a script.</ModalHeader>
           <ModalBody>
-            {/* <Textarea
+            <VStack spacing={"10px"}>
+              {/* <Textarea
               value={value()}
               onInput={handleInput}
               placeholder="Paste questions here. Each line with one question."
             /> */}
-            <div class="up-10px uborder-dashed uborder-1px">
-              <Button onClick={() => addQuestionAtIndex(0)}>
-                Add question
-              </Button>
-              <For each={questions()}>
-                {(item, idx) => {
-                  const UI = item.UI;
-                  return (
-                    <div class="umt-10px">
-                      <Divider class="umy-10px" />
-                      <UI />
-                      <Button
-                        colorScheme={"danger"}
-                        onClick={() =>
-                          setQuestions((current) =>
-                            current.filter(
-                              (x) =>
-                                x.current.internalId !== item.current.internalId
+              <FormControl>
+                <FormLabel for="pid">Preset Name</FormLabel>
+                <Input
+                  id="pid"
+                  value={presetId()}
+                  onInput={(e) => setPresetId(e.target.value)}
+                />
+                <FormHelperText></FormHelperText>
+              </FormControl>
+              <FormControl>
+                <FormLabel for="pid">Prologue (for each question)</FormLabel>
+                <Textarea
+                  id="pid"
+                  value={prologue()}
+                  onInput={(e) => setPrologue(e.target.value)}
+                />
+                <FormHelperText></FormHelperText>
+              </FormControl>
+              <FormControl>
+                <FormLabel for="pid">Epilogue (for each question)</FormLabel>
+                <Textarea
+                  id="pid"
+                  value={epilogue()}
+                  onInput={(e) => setEpilogue(e.target.value)}
+                />
+                <FormHelperText></FormHelperText>
+              </FormControl>
+              <div class="up-10px uborder-dashed uborder-1px uw-full">
+                <Button onClick={() => addQuestionAtIndex(0)}>
+                  Add question
+                </Button>
+                <For each={questions()}>
+                  {(item, idx) => {
+                    const UI = item.UI;
+                    return (
+                      <div class="umt-10px">
+                        <Divider class="umy-10px" />
+                        <UI />
+                        <Button
+                          colorScheme={"danger"}
+                          onClick={() =>
+                            setQuestions((current) =>
+                              current.filter(
+                                (x) =>
+                                  x.current.internalId !==
+                                  item.current.internalId
+                              )
                             )
-                          )
-                        }
-                      >
-                        Delete
-                      </Button>
-                      <Divider class="umy-10px" />
-                      <Button onClick={() => addQuestionAtIndex(idx() + 1)}>
-                        Add question
-                      </Button>
-                    </div>
-                  );
-                }}
-              </For>
+                          }
+                        >
+                          Delete
+                        </Button>
+                        <Divider class="umy-10px" />
+                        <Button onClick={() => addQuestionAtIndex(idx() + 1)}>
+                          Add question
+                        </Button>
+                      </div>
+                    );
+                  }}
+                </For>
 
-              <Divider class="umy-10px" />
-              <Button
-                onClick={async () => {
-                  const file = await openAFile();
-                  if (file != null) {
-                    const content = JSON.parse(file);
-                    if ("questions" in content) {
-                      setQuestions(
-                        content["questions"].map(createQuestionState)
+                <Divider class="umy-10px" />
+                <HStack spacing={"10px"}>
+                  <Button
+                    onClick={async () => {
+                      const file = await openAFile();
+                      if (file != null) {
+                        const content = JSON.parse(file);
+                        if ("questions" in content) {
+                          setQuestions(
+                            content["questions"].map(createQuestionState)
+                          );
+                        }
+                        if ("presetId" in content) {
+                          setPresetId(String(content["presetId"]));
+                        }
+                        if ("prologue" in content) {
+                          setPrologue(String(content["prologue"]));
+                        }
+                        if ("epilogue" in content) {
+                          setEpilogue(String(content["epilogue"]));
+                        }
+                      }
+                    }}
+                  >
+                    Load preset
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      const blob = new Blob(
+                        [
+                          JSON.stringify({
+                            presetId: presetId(),
+                            questions: questions().map((x) => x.current),
+                            prologue: prologue(),
+                            epilogue: epilogue(),
+                          }),
+                        ],
+                        { type: "text/plain;charset=utf-8" }
                       );
-                    }
-                  }
-                }}
-              >
-                Load preset
-              </Button>
+                      saveAs(blob, `${safeFileName(presetId())}.json`);
+                    }}
+                  >
+                    Save preset
+                  </Button>
+                  <Button
+                    onClick={async () => {
+                      const file = await openAFile();
+                      if (file != null) {
+                        const content = JSON.parse(file);
+                        if ("questions" in content) {
+                          setQuestions((x) => [
+                            ...x,
+                            ...content["questions"].map(createQuestionState),
+                          ]);
+                        }
+                      }
+                    }}
+                  >
+                    Merge preset
+                  </Button>
+                </HStack>
+              </div>
               <Button
                 onClick={() => {
-                  const blob = new Blob(
-                    [
-                      JSON.stringify({
-                        questions: questions().map((x) => x.current),
-                      }),
-                    ],
-                    { type: "text/plain;charset=utf-8" }
-                  );
-                  saveAs(blob, "preset.json");
+                  console.log(questions().map((x) => x.current));
+                  onClose();
+                  startRoutine();
                 }}
               >
-                Save preset
+                Start!
               </Button>
-            </div>
-            <Button
-              onClick={() => {
-                console.log(questions().map((x) => x.current));
-                onClose();
-                startRoutine();
-              }}
-            >
-              Start!
-            </Button>
+            </VStack>
           </ModalBody>
           {/* <ModalFooter>
             <Button onClick={onClose}>Close</Button>

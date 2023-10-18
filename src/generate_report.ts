@@ -1,143 +1,46 @@
-function generateAQuestion(qid: string, body: string, answer: string) {
-  return `
-    <div class="question">
-          <h2>Question Id: ${qid}</h2>
-          <!--question content-->
-          <div>${body}</div>
-        </div>
-        <div class="gpt-answer">
-          <h2>GPT ANSWER</h2>
-          <!--gpt answer-->
-          ${answer}
-        </div>
-        <div class="your-mark">
-          <form data-qid="${qid}">
-            <fieldset>
-              <legend>What's your mark for this question:</legend>
-              <div>
-                <input type="radio" id="c0" name="contact" value="0" />
-                <label for="c0">0</label>
-    
-                <input type="radio" id="c1" name="contact" value="1" />
-                <label for="c1">1</label>
-    
-                <input type="radio" id="c2" name="contact" value="2" />
-                <label for="c2">2</label>
-    
-                <input type="radio" id="c3" name="contact" value="3" />
-                <label for="c3">3</label>
-    
-                <input type="radio" id="c4" name="contact" value="4" />
-                <label for="c4">4</label>
-    
-                <input type="radio" id="c5" name="contact" value="5" checked />
-                <label for="c5">5</label>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-    
-        <div class="divider"></div>
-`;
+import Handlebars from "handlebars";
+import qtmpl from "./template_question.html?raw";
+import tmpl from "./template.html?raw";
+
+const questionTemplate = Handlebars.compile(qtmpl);
+const reportTemplate = Handlebars.compile(tmpl);
+
+function generateAQuestion(
+  qid: string,
+  cid: string,
+  body: string,
+  answer: string
+) {
+  return questionTemplate({
+    qid,
+    cid,
+    body,
+    answer,
+  });
 }
 
 export function generateReport(
   data: Array<{
     id: string;
+    contextId: string;
     body: string;
     answerHTML: string;
-  }>
+  }>,
+  presetId: string,
+  prologue: string,
+  epilogue: string
 ) {
-  return `
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <meta name="theme-color" content="#000000" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
-          integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
-          crossorigin="anonymous"
-        />
-    
-        <!-- The loading of KaTeX is deferred to speed up page rendering -->
-        <script
-          defer
-          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
-          integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
-          crossorigin="anonymous"
-        ></script>
-        <script
-          defer
-          src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"
-          crossorigin="anonymous"
-        ></script>
-    
-        <!-- To automatically render math in text elements, include the auto-render extension: -->
-        <script
-          defer
-          src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-          integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
-          crossorigin="anonymous"
-          onload="renderMathInElement(document.body);"
-        ></script>
-        <title></title>
-        <style>
-          .question {
-            padding: 1em;
-          }
-          .divider {
-            margin: 10px 0;
-            border: solid 1px #888;
-          }
-          .gpt-answer {
-            padding: 1em;
-            border: dashed 1px #ccc;
-          }
-          .your-mark {
-            padding: 1em;
-            border: dashed 1px #ccc;
-          }
-        </style>
-      </head>
-    
-      <body>
-        
-    ${data.map((x) => generateAQuestion(x.id, x.body, x.answerHTML)).join("\n")}
-        <!--repeat until-->
-    
-        <label for="marker">Marker</label>
-        <input id="marker" type="" text />
-        <button onclick="collectMark()">Collect your mark</button>
-        <script type="text/javascript">
-          console.log("Hello!");
-    
-          function collectMark() {
-            const marker = document.querySelector("input#marker").value;
-            const allForms = document.querySelectorAll("form[data-qid]");
-            const marks = [...allForms].map((x) => {
-              const mark = [...x.querySelectorAll("input")].find(
-                (x) => x.checked
-              ).value;
-              return [x.dataset.qid, mark];
-            });
-            console.log(marks);
-            const csvContent = [
-              "question_id,marker,mark",
-              ...marks.map(([id, mark]) => {
-                return \`\${id},\${marker},\${mark}\`;
-              }),
-            ].join("\\n");
-            const blob = new Blob([csvContent], {
-              type: "text/plain;charset=utf-8",
-            });
-            saveAs(blob, \`\${marker}_\${new Date().toLocaleString()}.csv\`);
-          }
-        </script>
-      </body>
-    </html>
-    
-`;
+  return reportTemplate({
+    allQuestions: data
+      .map((x) =>
+        generateAQuestion(
+          x.id,
+          x.contextId,
+          prologue + x.body + epilogue,
+          x.answerHTML
+        )
+      )
+      .join("\n"),
+    pid: presetId,
+  });
 }
