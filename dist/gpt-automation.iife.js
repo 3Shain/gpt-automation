@@ -17115,7 +17115,125 @@
 
 <div class="divider"></div>
 `;
-  const tmpl = '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, user-scalable=no" />\n    <meta name="theme-color" content="#000000" />\n    <link\n      rel="stylesheet"\n      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"\n      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"\n      crossorigin="anonymous"\n    />\n\n    <!-- The loading of KaTeX is deferred to speed up page rendering -->\n    <script\n      defer\n      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"\n      integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"\n      crossorigin="anonymous"\n    ><\/script>\n    <script\n      defer\n      src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"\n      crossorigin="anonymous"\n    ><\/script>\n\n    <!-- To automatically render math in text elements, include the auto-render extension: -->\n    <script\n      defer\n      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"\n      integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"\n      crossorigin="anonymous"\n      onload="renderMathInElement(document.body);"\n    ><\/script>\n    <title></title>\n    <style>\n      .question {\n        padding: 1em;\n      }\n      .divider {\n        margin: 10px 0;\n        border: solid 1px #888;\n      }\n      .gpt-answer {\n        padding: 1em;\n        border: dashed 1px #ccc;\n      }\n      .your-mark {\n        padding: 1em;\n        border: dashed 1px #ccc;\n      }\n    </style>\n  </head>\n\n  <body>\n    <h1>Preset Name: {{pid}}</h1>\n    {{{allQuestions}}}\n\n    <!--repeat until-->\n\n    <label for="marker">Marker</label>\n    <input id="marker" type="" text />\n    <button onclick="collectMark()">Collect your mark</button>\n    <script type="text/javascript">\n      const presetId = "{{pid}}";\n\n      function safeCsvString(input) {\n        // Check if the string contains special characters\n        if (\n          input.includes(",") ||\n          input.includes("\\n") ||\n          input.includes(\'"\')\n        ) {\n          // Escape double quotes and wrap the entire string in double quotes\n          return \'"\' + input.replace(/"/g, \'""\') + \'"\';\n        } else {\n          return input;\n        }\n      }\n\n      function collectMark() {\n        const marker = document.querySelector("input#marker").value;\n        const allForms = document.querySelectorAll("form[data-qid]");\n        const marks = [...allForms].map((x) => {\n          const mark = x.querySelector("#mark").value;\n          const comment = x.querySelector("#comment").value;\n          return [x.dataset.qid, x.dataset.cid, mark, comment];\n        });\n        console.log(marks);\n        const csvContent = [\n          "question_id,context_id,marker,mark,mark_max,mark_norm,comments",\n          ...marks.map(([id, cid, mark, comment]) => {\n            return `${id},${cid},${marker},${mark},20,${\n              mark / 20\n            },${safeCsvString(comment)}`;\n          }),\n        ].join("\\n");\n        const blob = new Blob([csvContent], {\n          type: "text/plain;charset=utf-8",\n        });\n        saveAs(\n          blob,\n          `${marker}_${presetId}_${new Date().toLocaleString()}.csv`\n        );\n      }\n    <\/script>\n  </body>\n</html>\n';
+  const tmpl = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="theme-color" content="#000000" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+      crossorigin="anonymous"
+    />
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+      integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+      crossorigin="anonymous"
+    ><\/script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"
+      crossorigin="anonymous"
+    ><\/script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"><\/script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          renderMathInElement(document.body, {
+            // customised options
+            // • auto-render specific keys, e.g.:
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\\\(', right: '\\\\)', display: false},
+                {left: '\\\\[', right: '\\\\]', display: true}
+            ],
+            // • rendering keys, e.g.:
+            throwOnError : false
+          });
+      });
+  <\/script>
+    <title></title>
+    <style>
+      .question {
+        padding: 1em;
+      }
+      .divider {
+        margin: 10px 0;
+        border: solid 1px #888;
+      }
+      .gpt-answer {
+        padding: 1em;
+        border: dashed 1px #ccc;
+      }
+      .your-mark {
+        padding: 1em;
+        border: dashed 1px #ccc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Preset Name: {{pid}}</h1>
+    {{{allQuestions}}}
+
+    <!--repeat until-->
+
+    <label for="marker">Marker</label>
+    <input id="marker" type="" text />
+    <button onclick="collectMark()">Collect your mark</button>
+    <script type="text/javascript">
+      const presetId = "{{pid}}";
+
+      function safeCsvString(input) {
+        // Check if the string contains special characters
+        if (
+          input.includes(",") ||
+          input.includes("\\n") ||
+          input.includes('"')
+        ) {
+          // Escape double quotes and wrap the entire string in double quotes
+          return '"' + input.replace(/"/g, '""') + '"';
+        } else {
+          return input;
+        }
+      }
+
+      function collectMark() {
+        const marker = document.querySelector("input#marker").value;
+        const allForms = document.querySelectorAll("form[data-qid]");
+        const marks = [...allForms].map((x) => {
+          const mark = x.querySelector("#mark").value;
+          const comment = x.querySelector("#comment").value;
+          return [x.dataset.qid, x.dataset.cid, mark, comment];
+        });
+        console.log(marks);
+        const csvContent = [
+          "question_id,context_id,marker,mark,mark_max,mark_norm,comments",
+          ...marks.map(([id, cid, mark, comment]) => {
+            return \`\${id},\${cid},\${marker},\${mark},20,\${
+              mark / 20
+            },\${safeCsvString(comment)}\`;
+          }),
+        ].join("\\n");
+        const blob = new Blob([csvContent], {
+          type: "text/plain;charset=utf-8",
+        });
+        saveAs(
+          blob,
+          \`\${marker}_\${presetId}_\${new Date().toLocaleString()}.csv\`
+        );
+      }
+    <\/script>
+  </body>
+</html>
+`;
   const questionTemplate = Handlebars.compile(qtmpl);
   const reportTemplate = Handlebars.compile(tmpl);
   function generateAQuestion(qid, cid, body, answer) {
