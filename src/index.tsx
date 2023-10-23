@@ -93,7 +93,7 @@ function waitUntilResponse(): Promise<HTMLElement> {
             )
           ) {
             confidence++;
-            if (confidence > 30) {
+            if (confidence > 10) {
               res(final.parentElement?.parentElement as HTMLElement);
               return;
             }

@@ -17302,7 +17302,7 @@
             const final = (_b = document.querySelector(".final-completion")) == null ? void 0 : _b.querySelector(".markdown.prose");
             if (final && !((_d = (_c = final.parentElement) == null ? void 0 : _c.parentElement) == null ? void 0 : _d.querySelector("svg.animate-spin"))) {
               confidence++;
-              if (confidence > 30) {
+              if (confidence > 10) {
                 res((_e = final.parentElement) == null ? void 0 : _e.parentElement);
                 return;
               }
