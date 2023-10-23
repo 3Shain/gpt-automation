@@ -86,11 +86,12 @@ function waitUntilResponse(): Promise<HTMLElement> {
             .querySelector(".final-completion")
             ?.querySelector(".markdown.prose");
           if (final) {
-            res(final as HTMLElement);
+            res(final.parentElement?.parentElement as HTMLElement);
+            return;
           } else {
-            rej(new Error("Detect response failed"));
+            // rej(new Error("Detect response failed"));
+            // maybe not reject it?
           }
-          return;
         }
       } else {
         if (
@@ -140,7 +141,9 @@ async function startRoutine() {
     answerHTML: string;
   }[] = [];
   let lastContext: any = null;
-  for (const q of questions()) {
+  const qqueue = [...questions().toReversed()];
+  while (qqueue.length) {
+    const q = qqueue.pop()!;
     if (lastContext != q.current.contextId) {
       console.log("context id differ");
       newTab.click();
@@ -153,8 +156,12 @@ async function startRoutine() {
       ...q.current,
       answerHTML: response.outerHTML,
     });
-    await wait(5000);
     lastContext = q.current.contextId;
+    if (qqueue.length) {
+      await wait(5000);
+    } else {
+      break;
+    }
   }
   console.log("Done!");
   const blob = new Blob(

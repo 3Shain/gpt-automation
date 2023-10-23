@@ -17295,19 +17295,17 @@
     let responseStarted = false;
     return new Promise((res, rej) => {
       function check() {
-        var _a, _b, _c;
+        var _a, _b, _c, _d;
         if (responseStarted) {
           if (((_a = document.querySelector(".final-completion")) == null ? void 0 : _a.querySelector(".result-streaming")) === null) {
             const final = (_b = document.querySelector(".final-completion")) == null ? void 0 : _b.querySelector(".markdown.prose");
             if (final) {
-              res(final);
-            } else {
-              rej(new Error("Detect response failed"));
+              res((_c = final.parentElement) == null ? void 0 : _c.parentElement);
+              return;
             }
-            return;
           }
         } else {
-          if ((_c = document.querySelector(".final-completion")) == null ? void 0 : _c.querySelector(".result-streaming")) {
+          if ((_d = document.querySelector(".final-completion")) == null ? void 0 : _d.querySelector(".result-streaming")) {
             responseStarted = true;
           }
         }
@@ -17340,7 +17338,9 @@
   async function startRoutine() {
     const data = [];
     let lastContext = null;
-    for (const q of questions()) {
+    const qqueue = [...questions().toReversed()];
+    while (qqueue.length) {
+      const q = qqueue.pop();
       if (lastContext != q.current.contextId) {
         console.log("context id differ");
         newTab.click();
@@ -17352,8 +17352,12 @@
         ...q.current,
         answerHTML: response.outerHTML
       });
-      await wait(5e3);
       lastContext = q.current.contextId;
+      if (qqueue.length) {
+        await wait(5e3);
+      } else {
+        break;
+      }
     }
     console.log("Done!");
     const blob = new Blob([generateReport(data, presetId(), prologue(), epilogue())], {
