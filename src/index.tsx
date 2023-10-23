@@ -75,6 +75,7 @@ function waitUntilResponse(): Promise<HTMLElement> {
   let responseStarted = false;
 
   return new Promise((res, rej) => {
+    let confidence = 0;
     function check() {
       if (responseStarted) {
         if (
@@ -91,11 +92,15 @@ function waitUntilResponse(): Promise<HTMLElement> {
               "svg.animate-spin"
             )
           ) {
-            res(final.parentElement?.parentElement as HTMLElement);
-            return;
+            confidence++;
+            if (confidence > 30) {
+              res(final.parentElement?.parentElement as HTMLElement);
+              return;
+            }
           } else {
             // rej(new Error("Detect response failed"));
             // maybe not reject it?
+            confidence = 0;
           }
         }
       } else {
@@ -107,7 +112,7 @@ function waitUntilResponse(): Promise<HTMLElement> {
           responseStarted = true;
         }
       }
-      requestAnimationFrame(check);
+      setTimeout(check, 100);
     }
     check();
   });

@@ -17294,14 +17294,20 @@
   function waitUntilResponse() {
     let responseStarted = false;
     return new Promise((res, rej) => {
+      let confidence = 0;
       function check() {
         var _a, _b, _c, _d, _e, _f;
         if (responseStarted) {
           if (((_a = document.querySelector(".final-completion")) == null ? void 0 : _a.querySelector(".result-streaming")) === null) {
             const final = (_b = document.querySelector(".final-completion")) == null ? void 0 : _b.querySelector(".markdown.prose");
             if (final && !((_d = (_c = final.parentElement) == null ? void 0 : _c.parentElement) == null ? void 0 : _d.querySelector("svg.animate-spin"))) {
-              res((_e = final.parentElement) == null ? void 0 : _e.parentElement);
-              return;
+              confidence++;
+              if (confidence > 30) {
+                res((_e = final.parentElement) == null ? void 0 : _e.parentElement);
+                return;
+              }
+            } else {
+              confidence = 0;
             }
           }
         } else {
@@ -17309,7 +17315,7 @@
             responseStarted = true;
           }
         }
-        requestAnimationFrame(check);
+        setTimeout(check, 100);
       }
       check();
     });
