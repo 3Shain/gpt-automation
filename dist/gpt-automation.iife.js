@@ -17295,17 +17295,17 @@
     let responseStarted = false;
     return new Promise((res, rej) => {
       function check() {
-        var _a, _b, _c, _d;
+        var _a, _b, _c, _d, _e, _f;
         if (responseStarted) {
           if (((_a = document.querySelector(".final-completion")) == null ? void 0 : _a.querySelector(".result-streaming")) === null) {
             const final = (_b = document.querySelector(".final-completion")) == null ? void 0 : _b.querySelector(".markdown.prose");
-            if (final) {
-              res((_c = final.parentElement) == null ? void 0 : _c.parentElement);
+            if (final && !((_d = (_c = final.parentElement) == null ? void 0 : _c.parentElement) == null ? void 0 : _d.querySelector("svg.animate-spin"))) {
+              res((_e = final.parentElement) == null ? void 0 : _e.parentElement);
               return;
             }
           }
         } else {
-          if ((_d = document.querySelector(".final-completion")) == null ? void 0 : _d.querySelector(".result-streaming")) {
+          if ((_f = document.querySelector(".final-completion")) == null ? void 0 : _f.querySelector(".result-streaming")) {
             responseStarted = true;
           }
         }

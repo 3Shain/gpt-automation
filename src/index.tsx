@@ -85,7 +85,12 @@ function waitUntilResponse(): Promise<HTMLElement> {
           const final = document
             .querySelector(".final-completion")
             ?.querySelector(".markdown.prose");
-          if (final) {
+          if (
+            final &&
+            !final.parentElement?.parentElement?.querySelector(
+              "svg.animate-spin"
+            )
+          ) {
             res(final.parentElement?.parentElement as HTMLElement);
             return;
           } else {
