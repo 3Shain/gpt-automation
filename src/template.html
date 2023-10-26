@@ -12,36 +12,12 @@
     />
 
     <!-- The loading of KaTeX is deferred to speed up page rendering -->
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
-      integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
-      crossorigin="anonymous"
-    ></script>
+
     <script
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"
       crossorigin="anonymous"
     ></script>
-
-    <!-- To automatically render math in text elements, include the auto-render extension: -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          renderMathInElement(document.body, {
-            // customised options
-            // • auto-render specific keys, e.g.:
-            delimiters: [
-                {left: '$$', right: '$$', display: true},
-                {left: '$', right: '$', display: false},
-                {left: '\\(', right: '\\)', display: false},
-                {left: '\\[', right: '\\]', display: true}
-            ],
-            // • rendering keys, e.g.:
-            throwOnError : false
-          });
-      });
-  </script>
     <title></title>
     <style>
       .question {
@@ -93,15 +69,16 @@
         const allForms = document.querySelectorAll("form[data-qid]");
         const marks = [...allForms].map((x) => {
           const mark = x.querySelector("#mark").value;
+          const mark_total = x.querySelector("#mark_total").value;
           const comment = x.querySelector("#comment").value;
-          return [x.dataset.qid, x.dataset.cid, mark, comment];
+          return [x.dataset.qid, x.dataset.cid, mark, mark_total, comment];
         });
         console.log(marks);
         const csvContent = [
-          "question_id,context_id,marker,mark,mark_max,mark_norm,comments",
-          ...marks.map(([id, cid, mark, comment]) => {
-            return `${id},${cid},${marker},${mark},20,${
-              mark / 20
+          "preset_id,question_id,context_id,marker,mark,mark_max,mark_norm,comments",
+          ...marks.map(([id, cid, mark, mark_total, comment]) => {
+            return `${presetId},${id},${cid},${marker},${mark},${mark_total},${
+              mark / mark_total
             },${safeCsvString(comment)}`;
           }),
         ].join("\n");

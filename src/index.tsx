@@ -23,8 +23,16 @@ import {
 } from "@hope-ui/solid";
 import { saveAs } from "file-saver";
 import "virtual:uno.css";
-import { For, JSX, createSignal } from "solid-js";
+import {
+  For,
+  JSX,
+  createEffect,
+  createSignal,
+} from "solid-js";
 import { generateReport } from "./generate_report";
+import katex from "katex";
+import { convertToHtml } from "@unified-latex/unified-latex-to-hast";
+import { parse } from "@unified-latex/unified-latex-util-parse";
 
 function safeFileName(input: string) {
   // Remove special characters commonly not allowed in filenames
@@ -175,7 +183,19 @@ async function startRoutine() {
   }
   console.log("Done!");
   const blob = new Blob(
-    [generateReport(data, presetId(), prologue(), epilogue())],
+    [
+      generateReport(
+        data.map((x) => {
+          return {
+            ...x,
+            body: generateRenderredBody(x.body),
+          };
+        }),
+        presetId(),
+        prologue(),
+        epilogue()
+      ),
+    ],
     {
       type: "text/plain;charset=utf-8",
     }
@@ -195,6 +215,45 @@ interface QuestionState {
 
 let internalIdSel = 0;
 
+const CUSTOM_MACROS = {
+  "\\RR": "\\mathbb{R}",
+  "\\ZZ": "\\mathbb{Z}",
+  "\\FF": "\\mathbb{F}",
+  "\\CC": "\\mathbb{C}",
+  // "\\rmfamily": "\\textbf",
+};
+
+const generateRenderredBody = (tex: string) => {
+  const frag = document.createElement("div");
+  frag.innerHTML = convertToHtml(parse(tex));
+  // renderMathInText(frag, {
+  //   delimiters: [
+  //     { left: "$$", right: "$$", display: true },
+  //     { left: "\\[", right: "\\]", display: true },
+  //     { left: "$", right: "$", display: false },
+  //     { left: "\\(", right: "\\)", display: false },
+  //   ],
+  //   //trust: true,
+  //   //strict: false,
+  // });
+  // shadow = shadow ?? preview.attachShadow({ mode: "open" });
+  for (const dm of Array.from(frag.querySelectorAll(".display-math"))) {
+    katex.render(dm.textContent!, dm as HTMLElement, {
+      displayMode: true,
+      throwOnError: false,
+      macros: CUSTOM_MACROS,
+    });
+  }
+  for (const im of Array.from(frag.querySelectorAll(".inline-math"))) {
+    katex.render(im.textContent!, im as HTMLElement, {
+      displayMode: false,
+      throwOnError: false,
+      macros: CUSTOM_MACROS,
+    });
+  }
+  return frag.innerHTML;
+};
+
 function createQuestionState(initial: {
   id: string;
   contextId: string;
@@ -209,38 +268,50 @@ function createQuestionState(initial: {
   const [body, setBody] = createSignal(initial.body);
 
   return {
-    UI: () => (
-      <>
-        <FormControl required>
-          <FormLabel for="qid">Question Id</FormLabel>
-          <Input id="qid" value={id()} onInput={(e) => setId(e.target.value)} />
-          <FormHelperText></FormHelperText>
-        </FormControl>
+    UI: () => {
+      let preview: HTMLDivElement = null!;
 
-        <FormControl required>
-          <FormLabel for="qcid">Question Context Id</FormLabel>
-          <Input
-            id="cid"
-            value={contextId()}
-            onInput={(e) => setContextId(e.target.value)}
-          />
-          <FormHelperText>
-            Question with the same context id will be feed into the same chat
-            session.
-          </FormHelperText>
-        </FormControl>
+      createEffect(() => {
+        preview.innerHTML = generateRenderredBody(body());
+      });
+      return (
+        <>
+          <FormControl required>
+            <FormLabel for="qid">Question Id</FormLabel>
+            <Input
+              id="qid"
+              value={id()}
+              onInput={(e) => setId(e.target.value)}
+            />
+            <FormHelperText></FormHelperText>
+          </FormControl>
 
-        <FormControl required>
-          <FormLabel for="body">Question Body</FormLabel>
-          <Textarea
-            id="body"
-            value={body()}
-            onInput={(e) => setBody(e.target.value)}
-          />
-          <FormHelperText></FormHelperText>
-        </FormControl>
-      </>
-    ),
+          <FormControl required>
+            <FormLabel for="qcid">Question Context Id</FormLabel>
+            <Input
+              id="cid"
+              value={contextId()}
+              onInput={(e) => setContextId(e.target.value)}
+            />
+            <FormHelperText>
+              Question with the same context id will be feed into the same chat
+              session.
+            </FormHelperText>
+          </FormControl>
+
+          <FormControl required>
+            <FormLabel for="body">Question Body</FormLabel>
+            <Textarea
+              id="body"
+              value={body()}
+              onInput={(e) => setBody(e.target.value)}
+            />
+            <FormHelperText></FormHelperText>
+            <div ref={preview}></div>
+          </FormControl>
+        </>
+      );
+    },
     get current() {
       return {
         internalId,
@@ -441,9 +512,20 @@ function App() {
   );
 }
 
+if ("destroyCurrent" in window) {
+  // @ts-ignore
+  window["destroyCurrent"]!();
+}
+
 const nav = document.querySelector("nav")!;
 const div = (<div class="mb-1 flex flex-row gap-2"></div>) as HTMLDivElement;
 const newTab = nav.firstChild!.firstChild as HTMLLinkElement;
 nav.insertBefore(div, nav.firstChild);
 
-render(() => <App />, div);
+const unmount = render(() => <App />, div);
+
+// @ts-ignore
+window["destroyCurrent"] = () => {
+  unmount();
+  div.remove();
+};
