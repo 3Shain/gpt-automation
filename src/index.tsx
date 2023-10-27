@@ -23,12 +23,7 @@ import {
 } from "@hope-ui/solid";
 import { saveAs } from "file-saver";
 import "virtual:uno.css";
-import {
-  For,
-  JSX,
-  createEffect,
-  createSignal,
-} from "solid-js";
+import { For, JSX, createEffect, createSignal } from "solid-js";
 import { generateReport } from "./generate_report";
 import katex from "katex";
 import { convertToHtml } from "@unified-latex/unified-latex-to-hast";
@@ -87,12 +82,12 @@ function waitUntilResponse(): Promise<HTMLElement> {
     function check() {
       if (responseStarted) {
         if (
-          document
-            .querySelector(".final-completion")
+          [...document.querySelectorAll("div.group.w-full")]
+            .toReversed()[0]
             ?.querySelector(".result-streaming") === null
         ) {
-          const final = document
-            .querySelector(".final-completion")
+          const final = [...document.querySelectorAll("div.group.w-full")]
+            .toReversed()[0]
             ?.querySelector(".markdown.prose");
           if (
             final &&
@@ -113,8 +108,8 @@ function waitUntilResponse(): Promise<HTMLElement> {
         }
       } else {
         if (
-          document
-            .querySelector(".final-completion")
+          [...document.querySelectorAll("div.group.w-full")]
+            .toReversed()[0]
             ?.querySelector(".result-streaming")
         ) {
           responseStarted = true;
