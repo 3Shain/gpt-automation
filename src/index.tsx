@@ -82,11 +82,11 @@ function waitUntilResponse(): Promise<HTMLElement> {
     function check() {
       if (responseStarted) {
         if (
-          [...document.querySelectorAll("div.group.w-full")]
+          [...document.querySelectorAll("div.text-token-text-primary.w-full")]
             .toReversed()[0]
             ?.querySelector(".result-streaming") === null
         ) {
-          const final = [...document.querySelectorAll("div.group.w-full")]
+          const final = [...document.querySelectorAll("div.text-token-text-primary.w-full")]
             .toReversed()[0]
             ?.querySelector(".markdown.prose");
           if (
@@ -96,6 +96,7 @@ function waitUntilResponse(): Promise<HTMLElement> {
             )
           ) {
             confidence++;
+            console.log("gain confidence");
             if (confidence > 10) {
               res(final.parentElement?.parentElement as HTMLElement);
               return;
@@ -108,7 +109,7 @@ function waitUntilResponse(): Promise<HTMLElement> {
         }
       } else {
         if (
-          [...document.querySelectorAll("div.group.w-full")]
+          [...document.querySelectorAll("div.text-token-text-primary.w-full")]
             .toReversed()[0]
             ?.querySelector(".result-streaming")
         ) {
@@ -123,9 +124,9 @@ function waitUntilResponse(): Promise<HTMLElement> {
 
 async function postMessage(content: string) {
   textarea = document.querySelector(
-    '#prompt-textarea[tabindex="0"]'
+    '#prompt-textarea'
   ) as HTMLTextAreaElement;
-  submitButton = textarea.nextElementSibling as HTMLButtonElement;
+  submitButton = textarea.nextElementSibling!.nextElementSibling as HTMLButtonElement;
   textarea.value = content;
 
   const inputEvent = new InputEvent("input", {
@@ -158,12 +159,16 @@ async function startRoutine() {
   while (qqueue.length) {
     const q = qqueue.pop()!;
     if (lastContext != q.current.contextId) {
-      console.log("context id differ");
+      console.log("context id differ, ");
       newTab.click();
       await wait(1000);
+      console.log("switched to new contexts ");
     }
+    console.log("post msg");
     await postMessage(prologue() + q.current.body + epilogue());
+    console.log("post msg done.");
     const response = await waitUntilResponse();
+    console.log("get response");
     // console.log(response);
     data.push({
       ...q.current,
@@ -171,10 +176,12 @@ async function startRoutine() {
     });
     lastContext = q.current.contextId;
     if (qqueue.length) {
+      console.log("will wait 5000ms");
       await wait(5000);
     } else {
       break;
     }
+    console.log("question end");
   }
   console.log("Done!");
   const blob = new Blob(
@@ -342,7 +349,7 @@ function App() {
         onClick={() => {
           onOpen();
         }}
-        class="flex px-3 min-h-[44px] py-1 items-center gap-3 transition-colors duration-200 dark:text-white cursor-pointer text-sm rounded-md border dark:border-white/20 gizmo:min-h-0 hover:bg-gray-500/10 h-11 gizmo:h-10 gizmo:rounded-lg gizmo:border-[rgba(0,0,0,0.1)] bg-white dark:bg-transparent flex-grow overflow-hidden"
+        class="flex h-10 w-full items-center gap-2 rounded-lg px-2 font-semibold text-token-text-primary hover:bg-token-surface-primary"
       >
         <span class="truncate">Open Script Panel</span>
       </a>
@@ -512,15 +519,16 @@ if ("destroyCurrent" in window) {
   window["destroyCurrent"]!();
 }
 
-const nav = document.querySelector("nav")!;
-const div = (<div class="mb-1 flex flex-row gap-2"></div>) as HTMLDivElement;
-const newTab = nav.firstChild!.firstChild as HTMLLinkElement;
-nav.insertBefore(div, nav.firstChild);
+const nav = document.querySelector(`div[data-projection-id="8"]`)!;
+// const div = (<a class="flex h-10 w-full items-center gap-2 rounded-lg px-2 font-semibold text-token-text-primary hover:bg-token-surface-primary"></a>) as HTMLDivElement;
+const newTab = document.querySelector(`div[data-projection-id="7"]`)!.firstChild! as HTMLLinkElement;
+// nav.insertBefore(div, nav.firstChild);
+console.log(newTab);
 
-const unmount = render(() => <App />, div);
+const unmount = render(() => <App />, nav);
 
 // @ts-ignore
 window["destroyCurrent"] = () => {
   unmount();
-  div.remove();
+  // div.remove();
 };
