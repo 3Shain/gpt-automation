@@ -92,7 +92,7 @@ function waitUntilResponse(): Promise<HTMLElement> {
           if (
             final &&
             !final.parentElement?.parentElement?.querySelector(
-              "svg.animate-spin"
+              "svg.text-brand-purple"
             )
           ) {
             confidence++;
@@ -519,9 +519,9 @@ if ("destroyCurrent" in window) {
   window["destroyCurrent"]!();
 }
 
-const nav = document.querySelector(`div[data-projection-id="8"]`)!;
+const nav = document.querySelector(`a[href="/gpts/discovery"]`)!.parentElement!;
 // const div = (<a class="flex h-10 w-full items-center gap-2 rounded-lg px-2 font-semibold text-token-text-primary hover:bg-token-surface-primary"></a>) as HTMLDivElement;
-const newTab = document.querySelector(`div[data-projection-id="7"]`)!.firstChild! as HTMLLinkElement;
+const newTab = nav.parentElement!.firstChild! as HTMLLinkElement;
 // nav.insertBefore(div, nav.firstChild);
 console.log(newTab);
 
