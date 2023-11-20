@@ -521,7 +521,7 @@ if ("destroyCurrent" in window) {
 
 const nav = document.querySelector(`a[href="/gpts/discovery"]`)!.parentElement!;
 // const div = (<a class="flex h-10 w-full items-center gap-2 rounded-lg px-2 font-semibold text-token-text-primary hover:bg-token-surface-primary"></a>) as HTMLDivElement;
-const newTab = nav.parentElement!.firstChild! as HTMLLinkElement;
+const newTab = document.querySelector(`a[href="/"]`)! as HTMLLinkElement;
 // nav.insertBefore(div, nav.firstChild);
 console.log(newTab);
 
