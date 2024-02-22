@@ -1,0 +1,27 @@
+{
+    "name": "gpt-automation",
+    "scripts": {
+        "start": "vite .",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@types/file-saver": "^2.0.5",
+        "@types/katex": "^0.16.5",
+        "typescript": "^5.2.2",
+        "unocss": "^0.56.5",
+        "vite": "^4.4.11",
+        "vite-plugin-css-injected-by-js": "^3.3.0",
+        "vite-plugin-solid": "^2.7.1"
+    },
+    "dependencies": {
+        "@hope-ui/solid": "^0.6.7",
+        "@stitches/core": "^1.2.8",
+        "@unified-latex/unified-latex-to-hast": "^1.5.0",
+        "@unified-latex/unified-latex-util-parse": "^1.4.2",
+        "file-saver": "^2.0.5",
+        "handlebars": "^4.7.8",
+        "katex": "^0.16.9",
+        "solid-js": "^1.8.1",
+        "solid-transition-group": "^0.2.3"
+    }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="theme-color" content="#000000" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+      integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV"
+      crossorigin="anonymous"
+    />
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"
+      crossorigin="anonymous"
+    ></script>
+    <title></title>
+    <style>
+      .question {
+        padding: 1em;
+      }
+      .divider {
+        margin: 10px 0;
+        border: solid 1px #888;
+      }
+      .gpt-answer {
+        padding: 1em;
+        border: dashed 1px #ccc;
+      }
+      .your-mark {
+        padding: 1em;
+        border: dashed 1px #ccc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Preset Name: {{pid}}</h1>
+    {{{allQuestions}}}
+
+    <!--repeat until-->
+
+    <label for="marker">Marker</label>
+    <input id="marker" type="" text />
+    <button onclick="collectMark()">Collect your mark</button>
+    <script type="text/javascript">
+      const presetId = "{{pid}}";
+
+      function safeCsvString(input) {
+        // Check if the string contains special characters
+        if (
+          input.includes(",") ||
+          input.includes("\n") ||
+          input.includes('"')
+        ) {
+          // Escape double quotes and wrap the entire string in double quotes
+          return '"' + input.replace(/"/g, '""') + '"';
+        } else {
+          return input;
+        }
+      }
+
+      function collectMark() {
+        const marker = document.querySelector("input#marker").value;
+        const allForms = document.querySelectorAll("form[data-qid]");
+        const marks = [...allForms].map((x) => {
+          const mark = x.querySelector("#mark").value;
+          const mark_total = x.querySelector("#mark_total").value;
+          const comment = x.querySelector("#comment").value;
+          return [x.dataset.qid, x.dataset.cid, mark, mark_total, comment];
+        });
+        console.log(marks);
+        const csvContent = [
+          "preset_id,question_id,context_id,marker,mark,mark_max,mark_norm,comments",
+          ...marks.map(([id, cid, mark, mark_total, comment]) => {
+            return `${presetId},${id},${cid},${marker},${mark},${mark_total},${
+              mark / mark_total
+            },${safeCsvString(comment)}`;
+          }),
+        ].join("\n");
+        const blob = new Blob([csvContent], {
+          type: "text/plain;charset=utf-8",
+        });
+        saveAs(
+          blob,
+          `${marker}_${presetId}_${new Date().toLocaleString()}.csv`
+        );
+      }
+    </script>
+  </body>
+</html>

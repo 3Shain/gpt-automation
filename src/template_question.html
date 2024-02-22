@@ -1,0 +1,48 @@
+<div class="question">
+  <h2>Question Id: {{qid}}</h2>
+  <!--question content-->
+  <div>{{{body}}}</div>
+</div>
+<div class="gpt-answer">
+  <h2>GPT ANSWER</h2>
+  <!--gpt answer-->
+  {{{answer}}}
+</div>
+<div class="your-mark">
+  <form data-qid="{{qid}}" data-cid="{{cid}}">
+    <fieldset>
+      <legend>What's your mark for this question: achieved / total</legend>
+      <div>
+        <!-- <input type="radio" id="c0" name="contact" value="0" />
+        <label for="c0">0</label>
+
+        <input type="radio" id="c1" name="contact" value="1" />
+        <label for="c1">1</label>
+
+        <input type="radio" id="c2" name="contact" value="2" />
+        <label for="c2">2</label>
+
+        <input type="radio" id="c3" name="contact" value="3" />
+        <label for="c3">3</label>
+
+        <input type="radio" id="c4" name="contact" value="4" />
+        <label for="c4">4</label>
+
+        <input type="radio" id="c5" name="contact" value="5" checked />
+        <label for="c5">5</label> -->
+        <input type="number" id="mark" value="20" min="0" max="20" /> /
+        <input type="number" id="mark_total" value="20" min="0" max="20" />
+
+        <div style="margin-top: 10px; vertical-align: top">
+          <p>Comments (if any)</p>
+          <textarea
+            id="comment"
+            style="width: 100%; resize: vertical"
+          ></textarea>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<div class="divider"></div>
