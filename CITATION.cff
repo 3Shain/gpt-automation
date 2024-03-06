@@ -1,10 +1,15 @@
-cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+abstract: <p>Automating prompts based on presets and generating html reports with
+  interactive marking workflows.</p>
 authors:
-- family-names: "He"
-  given-names: "Feifan"
-title: "ChatGPT Prompt Automation Tool"
-version: 20240306
+- affiliation: University of Edinburgh
+  family-names: He
+  given-names: Feifan
+cff-version: 1.2.0
+date-released: '2024-03-06'
 doi: 10.5281/zenodo.10787657
-date-released: 2024-03-06
-url: "https://doi.org/10.5281/zenodo.10787657"
+license:
+- cc-by-4.0
+repository-code: https://github.com/3Shain/gpt-automation
+title: ChatGPT Prompt Automation Tool
+type: software
+version: '20240306'
